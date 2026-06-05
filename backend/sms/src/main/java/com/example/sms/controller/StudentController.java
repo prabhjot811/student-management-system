@@ -4,7 +4,7 @@ import com.example.sms.model.Student;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import java.util.ArrayList;
 
 
 @RestController
@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StudentController {
     
     @GetMapping
-    public Student getStudent() {
-        return new Student(1, "John Doe", "Computer Science");
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Prabhjot Singh", "MCA"));
+        students.add(new Student(2, "Navroop", "BCA"));
+        students.add(new Student(3, "Amanpreet Kaur", "MCA"));
+
+        return students;
     }
 
-    
 }
