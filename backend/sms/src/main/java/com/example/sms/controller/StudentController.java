@@ -3,8 +3,9 @@ package  com.example.sms.controller;
 import com.example.sms.model.Student;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -22,4 +23,12 @@ public class StudentController {
         return students;
     }
 
-}
+    @GetMapping("/MCA")
+    public List<Student> getMCAStudents() {
+        return getStudents().stream()
+                .filter(student -> "MCA".equals(student.getCourse()))
+                .collect(Collectors.toList());
+    }
+    }
+
+

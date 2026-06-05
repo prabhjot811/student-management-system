@@ -14,11 +14,23 @@ function App(){
         
     };
 
+    const getMCAStudents = async () => {
+        const response = await fetch('http://localhost:8081/students/MCA');
+        const data = await response.json();
+        setStudents(data);
+    };
+
     return (
         <div>
             <button onClick={getStudents}>
                 fetch Students
             </button>
+
+            <button onClick={getMCAStudents}>
+                fetch MCA Students
+            </button>
+
+            
 
             <ul>
                 {students.map(student => (
