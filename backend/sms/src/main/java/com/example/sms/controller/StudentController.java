@@ -2,17 +2,22 @@ package  com.example.sms.controller;
 
 import com.example.sms.model.Student;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import java.util.ArrayList;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @RestController
 @RequestMapping("/students")
 @CrossOrigin(origins = "http://localhost:5173")
 public class StudentController {
-    
+
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @GetMapping
     public ArrayList<Student> getStudents() {
         ArrayList<Student> students = new ArrayList<>();
@@ -29,6 +34,17 @@ public class StudentController {
                 .filter(student -> "MCA".equals(student.getCourse()))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/count")
+    public int countStudents(){
+        String sql = "SELECT COUNT(*) FROM students";
+
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+
+
+
+}
 
 
