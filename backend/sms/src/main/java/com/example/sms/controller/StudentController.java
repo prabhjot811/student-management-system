@@ -3,6 +3,8 @@ package  com.example.sms.controller;
 import com.example.sms.dto.StudentRequestDTO;
 import com.example.sms.dto.StudentResponseDTO;
 import com.example.sms.model.Student;
+
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -12,8 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import com.example.sms.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
+import java.util.Map;
+
 
 
 
@@ -88,6 +91,21 @@ public class StudentController {
     {
         Student student = service.addStudent(dto);
         return ResponseEntity.ok(student);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateStudent(@PathVariable Integer id, @RequestBody StudentRequestDTO dto) {
+        Student student = service.updateStudent(id,dto);
+
+        return ResponseEntity.ok(student);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteStudent(@PathVariable Integer id) {
+
+        return ResponseEntity.ok(Map.of("message", service.deleteStudent(id))) ;
     }
 
 
