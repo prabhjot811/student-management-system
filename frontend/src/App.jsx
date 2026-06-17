@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 
 function App() {
   //{"id":1,"name":"John Doe","course":"Computer Science"}
@@ -61,6 +62,10 @@ function App() {
     }
   };
 
+  const loginWithGoogle = () => {
+    window.location.href = "http://localhost:8081/oauth2/authorization/google";
+  };
+
   return (
     <div>
       <button onClick={getStudents}>fetch Students</button>
@@ -113,6 +118,7 @@ function App() {
       ></input>
 
       <button onClick={login}>Login</button>
+      <button onClick={loginWithGoogle}>Login with Google</button>
     </div>
   );
 }
