@@ -126,7 +126,15 @@ function App() {
   // );
   const [students, setStudents] = useState([]);
   const fetchStudents = async () => {
-    const response = await fetch("http://localhost:8081/students");
+    const token = "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4MTc3MTMxNiwiZXhwIjoxNzgxODA3MzE2LCJyb2xlIjoiYWRtaW4ifQ.dKmqoAPdQwtNjddvPlTZ5cYavoC7mJ00QwSE1peagvL-uHan880RMhVHPHKHO5C8";
+     const response = await fetch("http://localhost:8081/students", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
     const data = await response.json();
 
     setStudents(data);
